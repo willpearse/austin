@@ -26,7 +26,7 @@
 #include <numeric>
 
 class DataModel{
-private:
+protected:
 	std::vector<std::vector<double> > explanatories;
 	std::vector<double> response;
 	std::string response_name;

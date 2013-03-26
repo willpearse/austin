@@ -28,9 +28,13 @@ int main(int argc, const char * argv[]) {
 	vector<double> proposals(2);proposals[0]=0.2; proposals[1]=0.2;
 	vector<long unsigned int> seeds(2);seeds[0]=123456;seeds[1]=456789;
 
-	//Initialising
-	Master test_master(2, 1000000, 1000, 1, &test_data, seeds, proposals, starting_vector);
-	test_master.start();
-	test_master.write_output("combined.txt");
+	Master basic_chains(2, 1000000, 1000, 1, &test_data, seeds, proposals, starting_vector);
+	basic_chains.start_swap(123456);
+	basic_chains.write_output("simple.txt");
+
+	vector<double> heats(1); heats[0] = 20.0;
+	Master heated_chains(1000000, 1000, 1, &test_data, seeds, proposals, starting_vector, heats);
+	heated_chains.start_swap(123456);
+	heated_chains.write_output("heated.txt");
 	return 0;
 }
